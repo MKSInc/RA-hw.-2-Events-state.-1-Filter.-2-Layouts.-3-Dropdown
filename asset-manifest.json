@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/RA-hw.-2-Events-state.-1-Filter.-2-Layouts.-3-Dropdown/static/css/main.b5bfd908.chunk.css",
+    "main.js": "/RA-hw.-2-Events-state.-1-Filter.-2-Layouts.-3-Dropdown/static/js/main.5603b684.chunk.js",
+    "main.js.map": "/RA-hw.-2-Events-state.-1-Filter.-2-Layouts.-3-Dropdown/static/js/main.5603b684.chunk.js.map",
+    "runtime-main.js": "/RA-hw.-2-Events-state.-1-Filter.-2-Layouts.-3-Dropdown/static/js/runtime-main.a450cdd3.js",
+    "runtime-main.js.map": "/RA-hw.-2-Events-state.-1-Filter.-2-Layouts.-3-Dropdown/static/js/runtime-main.a450cdd3.js.map",
+    "static/js/2.f9c6bcdc.chunk.js": "/RA-hw.-2-Events-state.-1-Filter.-2-Layouts.-3-Dropdown/static/js/2.f9c6bcdc.chunk.js",
+    "static/js/2.f9c6bcdc.chunk.js.map": "/RA-hw.-2-Events-state.-1-Filter.-2-Layouts.-3-Dropdown/static/js/2.f9c6bcdc.chunk.js.map",
+    "index.html": "/RA-hw.-2-Events-state.-1-Filter.-2-Layouts.-3-Dropdown/index.html",
+    "static/css/main.b5bfd908.chunk.css.map": "/RA-hw.-2-Events-state.-1-Filter.-2-Layouts.-3-Dropdown/static/css/main.b5bfd908.chunk.css.map",
+    "static/js/2.f9c6bcdc.chunk.js.LICENSE.txt": "/RA-hw.-2-Events-state.-1-Filter.-2-Layouts.-3-Dropdown/static/js/2.f9c6bcdc.chunk.js.LICENSE.txt",
+    "static/media/store.css": "/RA-hw.-2-Events-state.-1-Filter.-2-Layouts.-3-Dropdown/static/media/PTSans-Narrow.66012c2f.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a450cdd3.js",
+    "static/js/2.f9c6bcdc.chunk.js",
+    "static/css/main.b5bfd908.chunk.css",
+    "static/js/main.5603b684.chunk.js"
+  ]
+}
