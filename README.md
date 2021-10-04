@@ -1,70 +1,203 @@
-# Getting Started with Create React App
+<a name="top"></a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 2. Домашнее задание к лекции «События и состояния»
 
-## Available Scripts
+**Перейти к:**  
+***[2.2 Расположение товаров](#2.2)  
+[2.3 Выпадающий список](#2.3)***
 
-In the project directory, you can run:
+## 2.1 Портфолио с фильтрами
 
-### `npm start`
+Необходимо реализовать портфолио с фильтрами, аналогичное указанному на изображении.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![portfolio-all](./assets/portfolio-all.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Описание проекта
 
-### `npm test`
+Разработайте компонент класса `Portfolio` хранящий список фильтров (а также активный фильтр) а также список проектов.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Сами фильтры отображаются в компоненте без состояния `Toolbar`, которому от `Portfolio` мы передаем три свойства:
+- `filters` - список фильтров, название которых совпадает с категориями проектов,
+- `selected` - активный фильтр,
+- `onSelectFilter(filter)` - обработчик события, который реагирует на выбор пользователем одного из фильтров, обработчик принимает один аргумент — строку с названием фильтра.
 
-### `npm run build`
+Пример:
+```
+<Toolbar
+  filters={["All", "Websites", "Flayers", "Business Cards"]}
+  selected="All"
+  onSelectFilter={(filter) => {console.log(filter);}}/>
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+В данном примере при выборе фильтра его название будет выведено в консоль. Например «Business Cards».
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Изображения самих проектов отображаются компонентом без состояния `ProjectList`, которому от `Portfolio` мы передаем список проектов — в свойство `projects`. Отображение проектов — это единственная ответственность компонента `ProjectList`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Чтобы компонент `Portfolio` мог реагировать на выбор пользователем фильтра проектов, например `Business Cards`, и передававать отфильтрованные по категории `Business Cards` проекты в компонент `ProjectList`, в класс `Portfolio` необходимо добавить состояние (state).
 
-### `npm run eject`
+Ваша задача:
+- установить состояние выбранного фильтра в обработчике события который `Portfolio` передает в свойство `onSelectFilter` компонента `Toolbar`
+- из компонента `Portfolio` передать активный фильтр в свойство `selected` компонента `Toolbar`
+- в компоненте `Portfolio` отфильтровать по активному фильтру проекты и передать их в компонент `ProjectList`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![portfolio-cards.png](./assets/portfolio-cards.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Набор данных для отображения:
+```js
+[{
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/mon.jpg",
+  category: "Business Cards"
+}, {
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/200.jpg",
+  category: "Websites"
+}, {
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/emi_haze.jpg",
+  category: "Websites"
+}, {
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/codystretch.jpg",
+  category: "Websites"
+}, {
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/Triangle_003.jpg",
+  category: "Business Cards"
+}, {
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290.png",
+  category: "Websites"
+}, {
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/200.jpg",
+  category: "Websites"
+}, {
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/transmission.jpg",
+  category: "Business Cards"
+}, {
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290_1.png",
+  category: "Websites"
+}, {
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290_2.png",
+  category: "Flayers"
+}, {
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/the_ninetys_brand.jpg",
+  category: "Websites"
+}, {
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/dia.jpg",
+  category: "Business Cards"
+}, {
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/Triangle_350x197.jpg",
+  category: "Websites"
+}, {
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/emi_haze.jpg",
+  category: "Websites"
+}, {
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/transmission.jpg",
+  category: "Business Cards"
+}, {
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/Triangle_350x197_1.jpg",
+  category: "Websites"
+}, {
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290_3.png",
+  category: "Flayers"
+}]
+```
+## <a name="2.2">2.2 Расположение товаров</a>
+***[(наверх)](#top)***
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Вам необоходимо сделать приложение для отображение товаров в интернет-магазине. Заказчик хочет, чтобы пользователь мог увидеть товары в виде карточек или в виде списка, в зависимости от того, какое расположение выберет пользователь.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![cards view](./assets/card_view.png)
 
-## Learn More
+### Описание проекта
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Реализуйте компонент `Store`, который управляет состоянием приложения, (хранит список товаров в атрибуте `products`).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Иконка разметки, которая указывает на переключение между типами расположения товаров реализована в компоненте без состояния `IconSwitch`, которому от `Store` мы передаем два свойства:
+- `icon` - название иконки, которую хотим показать. Название иконки соответствует названию класса из библиотеки [material icons](https://material.io/icons/#ic_view_module). В нашем случае это - либо `view_list`, либо `view_module`.
+- `onSwitch()` - обработчик события, который реагирует на нажатие пользователем на иконку.
 
-### Code Splitting
+Пример:
+```jsx
+<IconSwitch icon={"view_list"} onSwitch={() => console.log("change state here")}/>
+```
+Сами товары отображаются в компонентах без состояния `CardsView` или `ListView`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Компоненту `CardsView` от `Store` мы передаем свойство `cards` - массив с данными, каждый элемент из которого затем уже отображается с помощью карточки товара `ShopCard`.
 
-### Analyzing the Bundle Size
+Т.е. `CardsView` отображает много карточек `ShopCard`. На один товар - одна карточка `ShopCard`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Компоненту `ListView` от `Store` мы передаем всего одно свойство `items` - массив с данными, каждый элемент из которого затем уже отображается с помощью `ShopItem` для товаров, которые мы хотим отобразить.
 
-### Making a Progressive Web App
+Т.е. `ListView` отображает много `ShopItem`. На один товар - один `ShopItem`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Чтобы компонент `Store` мог реагировать на выбор пользователем вида разметки, в класс `Store` необходимо добавить состояние (state).
 
-### Advanced Configuration
+Ваша задача:
+- установить состояние выбранного типа разметки в обработчике события который `Store` передает в свойство `onSwitch` компонента `IconSwitch`
+- из компонента `Store` передать правильную иконку в свойство `icon` компонента `IconSwitch`
+- в компоненте `Store` отобразить товары в компоненте `CardsView` или `ListView` соответсвенно состоянию компонента `App`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![list_view](./assets/list_view.png)
 
-### Deployment
+Не забудьте подключить Material Icons:
+```css
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons')
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Данные для отображения:
+```js
+const products = [{
+  name: "Nike Metcon 2",
+  price: "130",
+  color: "red",
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/layouts/img/1.jpg"
+}, {
+  name: "Nike Metcon 2",
+  price: "130",
+  color: "green",
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/layouts/img/2.jpg"
+}, {
+  name: "Nike Metcon 2",
+  price: "130",
+  color: "blue",
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/layouts/img/3.jpg"
+}, {
+  name: "Nike Metcon 2",
+  price: "130",
+  color: "black",
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/layouts/img/4.jpg"
+}, {
+  name: "Nike free run",
+  price: "170",
+  color: "black",
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/layouts/img/7.jpg"
+}, {
+  name: "Nike Metcon 3",
+  price: "150",
+  color: "green",
+  img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/layouts/img/5.jpg"
+}];
+```
 
-### `npm run build` fails to minify
+## <a name="2.3">2.3 Выпадающий список</a>
+***[(наверх)](#top)***
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Вам необходимо реализовать компоненты выпадающего списка.
+
+### Описание проекта
+
+![Выпадающий список](./assets/dropdown.png)
+
+Реализуйте компонент `DropdownList`, аналогичный указанному на рисунке. Для позиционирования выпадающего списка воспользуйтес контейнером с `position: relatvie`. Для простоты будем считать, что размер кнопки, при нажатии на которой показывается выпадающий список - фиксированного размера (соответственно, вам не нужно через DOM API вычислять размеры и отступы).
+
+Структура компонентов:
+- `Dropdown` - содержит кнопку и `DropdownList` (внутри себя хранит состояние, показывать или нет выпадающий список)
+- `DropdownList` - содержит список `DropdownItem`'ов, и хранит информацию о текущем выбранном элементе.
+
+Вам нужно:
+1. При клике на кнопку показывать и скрывать выпадающее меню
+1. Отрисовывать список на базе массива, хранящегося в памяти (через `map`)
+1. Подсвечивать выбранный элемент в списке (сделайте это на базе inline-стилей)
+
+"Подглядеть" реализацию показа/сворачивания на чистом JS и CSS вы можете в исходниках, расположенных в этом же каталоге.
+
+Вы можете реализовать данную задачу как с использованием Functional компонентов, так и на базе Class-Based компонентов.
+
+Но мы рекомендуем Functional.
+
